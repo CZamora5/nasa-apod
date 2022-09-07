@@ -5,9 +5,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NASA APOD</title>
-  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="./styles/css/style.css">
+  <script src="./src/index.js" type="module"></script>
 </head>
 <body>
-  
+  <main id="gallery"></main>
+  <template id="card-template">
+    <div class="card">
+      <!-- <div class="card__img"></div> -->
+      <div class="card__img"><img></div>
+      <div class="card__content">
+        <h3 class="card__title"></h3>
+        <time class="card__date"></time>
+        <p class="card__desc"></p>
+      </div>
+    </div>
+  </template>
 </body>
 </html>

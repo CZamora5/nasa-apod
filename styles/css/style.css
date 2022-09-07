@@ -14,4 +14,26 @@ body {
   padding: 0;
 }
 
-/*# sourceMappingURL=style.css.map */
+.card {
+  display: flex;
+  background-color: rgb(31, 31, 31);
+  color: rgb(230, 230, 230);
+  height: 400px;
+}
+.card__img {
+  height: 100%;
+}
+.card__img img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
+}
+.card__content {
+  padding: 1rem;
+}
+.card__title {
+  font-size: 2rem;
+}
+.card__date {
+  color: gray;
+}/*# sourceMappingURL=style.css.map */
