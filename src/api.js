@@ -1,4 +1,4 @@
-import { checkDateEquality, getLastValidDayOfMonth } from "./util";
+import { checkDateEquality, formatDate, getLastValidDayOfMonth } from './util.js';
 
 const API_KEY = 'd8lgw09oBngcPZN1fKLYUsUmRw4bYZXQAd5PIhsh';
 const BASE_URL = 'https://api.nasa.gov/planetary/apod';
@@ -16,9 +16,9 @@ export async function getPicturesByMonth(month) { // month = 'YYYY-MM' OR month 
   let data;
 
   if (checkDateEquality(endDate, new Date())) {
-    data = await getData(`${BASE_URL}?api_key=${API_KEY}&start_date=${startDate}`);
+    data = await getData(`${BASE_URL}?api_key=${API_KEY}&start_date=${formatDate(startDate)}`);
   } else {
-    data = await getData(`${BASE_URL}?api_key=${API_KEY}&start_date=${startDate}&end_date=${endDate}`);
+    data = await getData(`${BASE_URL}?api_key=${API_KEY}&start_date=${formatDate(startDate)}&end_date=${formatDate(endDate)}`);
   }
   return data;
 }
