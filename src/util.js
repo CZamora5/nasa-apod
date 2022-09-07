@@ -33,7 +33,7 @@ export function getLastValidDayOfMonth(month) { // month = 'YYYY-MM' OR month ca
 
   const monthNumber = currDate.getUTCMonth();
 
-  while (currDate.getUTCMonth() == monthNumber && currDate <= new Date()) {
+  while (getNextDay(currDate).getUTCMonth() == monthNumber && getNextDay(currDate) <= new Date()) {
     currDate = getNextDay(currDate);
   }
 
@@ -43,8 +43,8 @@ export function getLastValidDayOfMonth(month) { // month = 'YYYY-MM' OR month ca
 export function checkDateEquality(firstDate, secondDate) {
   return (
     firstDate.getUTCFullYear() === secondDate.getUTCFullYear() &&
-    firstDate.getUTCFullMonth() === secondDate.getUTCFullMonth() &&
-    firstDate.getUTCFullDate() === secondDate.getUTCFullDate()
+    firstDate.getUTCMonth() === secondDate.getUTCMonth() &&
+    firstDate.getUTCDate() === secondDate.getUTCDate()
   );
 }
 
