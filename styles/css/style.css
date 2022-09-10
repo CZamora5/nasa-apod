@@ -20,6 +20,10 @@ body {
   padding: 0;
 }
 
+.none {
+  display: none;
+}
+
 h1,
 h2,
 h3 {
@@ -42,6 +46,7 @@ a, a:visited, a:active {
   --clr-dark: rgb(31, 31, 31);
   --clr-light: rgb(230, 230, 230);
   --clr-violet: rgb(209, 156, 209);
+  --clr-light-red: rgb(235, 118, 144);
 }
 
 .card {
@@ -71,7 +76,6 @@ a, a:visited, a:active {
   margin-bottom: 0.5rem;
 }
 .card__btn {
-  --clr-hover: rgb(235, 118, 144);
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -84,12 +88,12 @@ a, a:visited, a:active {
   padding-left: 0;
 }
 .card__btn:hover {
-  color: var(--clr-hover);
+  color: var(--clr-light-red);
 }
 .card__btn:hover > span span,
 .card__btn:hover > span span::before,
 .card__btn:hover > span span::after {
-  background-color: var(--clr-hover);
+  background-color: var(--clr-light-red);
 }
 .card__btn:hover > span span {
   transform: scale(1.05) translateX(0.5rem);
@@ -133,6 +137,7 @@ a, a:visited, a:active {
 .header {
   position: -webkit-sticky;
   position: sticky;
+  z-index: 1;
   top: 0;
   padding: 0.25rem;
   background-color: white;
@@ -165,8 +170,9 @@ a, a:visited, a:active {
   justify-content: flex-end;
   width: 3rem;
   height: 3rem;
-  padding: 0.25rem;
+  padding: 0.375rem;
   border-radius: 0.5rem;
+  border: none;
   cursor: pointer;
   background-color: var(--clr-light, rgb(230, 230, 230));
 }
@@ -176,6 +182,8 @@ a, a:visited, a:active {
   height: 0.25rem;
   background-color: var(--medium-gray);
   border-radius: 100vw;
+  -webkit-animation: middle-bar-back 1s linear forwards;
+          animation: middle-bar-back 1s linear forwards;
 }
 .navbar__menu__item::before, .navbar__menu__item::after {
   content: "";
@@ -188,10 +196,270 @@ a, a:visited, a:active {
 .navbar__menu__item::before {
   width: 2.25rem;
   top: -0.5rem;
+  -webkit-animation: top-bar-back 1s linear forwards;
+          animation: top-bar-back 1s linear forwards;
 }
 .navbar__menu__item::after {
   width: 1.75rem;
   bottom: -0.5rem;
+  -webkit-animation: bottom-bar-back 1s linear forwards;
+          animation: bottom-bar-back 1s linear forwards;
+}
+.navbar__menu.active .navbar__menu__item {
+  background-color: var(--clr-light-red);
+  -webkit-animation: middle-bar 1s linear forwards;
+          animation: middle-bar 1s linear forwards;
+}
+.navbar__menu.active .navbar__menu__item::before, .navbar__menu.active .navbar__menu__item::after {
+  background-color: var(--clr-light-red);
+}
+.navbar__menu.active .navbar__menu__item::before {
+  -webkit-animation: top-bar 1s linear forwards;
+          animation: top-bar 1s linear forwards;
+}
+.navbar__menu.active .navbar__menu__item::after {
+  -webkit-animation: bottom-bar 1s linear forwards;
+          animation: bottom-bar 1s linear forwards;
+}
+@-webkit-keyframes top-bar {
+  0% {
+    top: -0.5rem;
+    width: 2.25rem;
+  }
+  25% {
+    top: -0.5rem;
+    width: 2.25rem;
+  }
+  50% {
+    top: 0;
+    width: 2.25rem;
+    transform: rotate(0deg);
+  }
+  100% {
+    top: 0;
+    width: 2.25rem;
+    transform-origin: center;
+    transform: rotate(45deg);
+  }
+}
+@keyframes top-bar {
+  0% {
+    top: -0.5rem;
+    width: 2.25rem;
+  }
+  25% {
+    top: -0.5rem;
+    width: 2.25rem;
+  }
+  50% {
+    top: 0;
+    width: 2.25rem;
+    transform: rotate(0deg);
+  }
+  100% {
+    top: 0;
+    width: 2.25rem;
+    transform-origin: center;
+    transform: rotate(45deg);
+  }
+}
+@-webkit-keyframes middle-bar {
+  0% {
+    width: 1.5rem;
+  }
+  25% {
+    width: 2.25rem;
+    background-color: var(--clr-light-red);
+  }
+  50% {
+    width: 2.25rem;
+    background-color: transparent;
+  }
+  100% {
+    width: 2.25rem;
+    background-color: transparent;
+  }
+}
+@keyframes middle-bar {
+  0% {
+    width: 1.5rem;
+  }
+  25% {
+    width: 2.25rem;
+    background-color: var(--clr-light-red);
+  }
+  50% {
+    width: 2.25rem;
+    background-color: transparent;
+  }
+  100% {
+    width: 2.25rem;
+    background-color: transparent;
+  }
+}
+@-webkit-keyframes bottom-bar {
+  0% {
+    bottom: -0.5rem;
+    width: 1.75rem;
+  }
+  25% {
+    bottom: -0.5rem;
+    width: 2.25rem;
+  }
+  50% {
+    bottom: 0;
+    width: 2.25rem;
+    transform: rotate(0deg);
+  }
+  100% {
+    bottom: 0;
+    width: 2.25rem;
+    transform-origin: center;
+    transform: rotate(-45deg);
+  }
+}
+@keyframes bottom-bar {
+  0% {
+    bottom: -0.5rem;
+    width: 1.75rem;
+  }
+  25% {
+    bottom: -0.5rem;
+    width: 2.25rem;
+  }
+  50% {
+    bottom: 0;
+    width: 2.25rem;
+    transform: rotate(0deg);
+  }
+  100% {
+    bottom: 0;
+    width: 2.25rem;
+    transform-origin: center;
+    transform: rotate(-45deg);
+  }
+}
+@-webkit-keyframes top-bar-back {
+  100% {
+    top: -0.5rem;
+    width: 2.25rem;
+  }
+  50% {
+    top: -0.5rem;
+    width: 2.25rem;
+    background-color: var(--clr-medium-gray);
+  }
+  25% {
+    top: 0;
+    width: 2.25rem;
+    transform: rotate(0deg);
+  }
+  0% {
+    top: 0;
+    width: 2.25rem;
+    transform-origin: center;
+    transform: rotate(45deg);
+  }
+}
+@keyframes top-bar-back {
+  100% {
+    top: -0.5rem;
+    width: 2.25rem;
+  }
+  50% {
+    top: -0.5rem;
+    width: 2.25rem;
+    background-color: var(--clr-medium-gray);
+  }
+  25% {
+    top: 0;
+    width: 2.25rem;
+    transform: rotate(0deg);
+  }
+  0% {
+    top: 0;
+    width: 2.25rem;
+    transform-origin: center;
+    transform: rotate(45deg);
+  }
+}
+@-webkit-keyframes middle-bar-back {
+  100% {
+    width: 1.5rem;
+  }
+  50% {
+    width: 2.25rem;
+    background-color: var(--clr-medium-gray);
+  }
+  25% {
+    width: 2.25rem;
+    background-color: transparent;
+  }
+  0% {
+    width: 2.25rem;
+    background-color: transparent;
+  }
+}
+@keyframes middle-bar-back {
+  100% {
+    width: 1.5rem;
+  }
+  50% {
+    width: 2.25rem;
+    background-color: var(--clr-medium-gray);
+  }
+  25% {
+    width: 2.25rem;
+    background-color: transparent;
+  }
+  0% {
+    width: 2.25rem;
+    background-color: transparent;
+  }
+}
+@-webkit-keyframes bottom-bar-back {
+  100% {
+    bottom: -0.5rem;
+    width: 1.75rem;
+  }
+  50% {
+    bottom: -0.5rem;
+    width: 2.25rem;
+    background-color: var(--clr-medium-gray);
+  }
+  25% {
+    bottom: 0;
+    width: 2.25rem;
+    transform: rotate(0deg);
+  }
+  0% {
+    bottom: 0;
+    width: 2.25rem;
+    transform-origin: center;
+    transform: rotate(-45deg);
+  }
+}
+@keyframes bottom-bar-back {
+  100% {
+    bottom: -0.5rem;
+    width: 1.75rem;
+  }
+  50% {
+    bottom: -0.5rem;
+    width: 2.25rem;
+    background-color: var(--clr-medium-gray);
+  }
+  25% {
+    bottom: 0;
+    width: 2.25rem;
+    transform: rotate(0deg);
+  }
+  0% {
+    bottom: 0;
+    width: 2.25rem;
+    transform-origin: center;
+    transform: rotate(-45deg);
+  }
 }
 
 @media (min-width: 48em) {

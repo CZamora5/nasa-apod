@@ -30,7 +30,6 @@
   }
 
   &__btn {
-    --clr-hover: rgb(235, 118, 144);
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -44,14 +43,14 @@
     padding-left: 0;
 
     &:hover {
-      color: var(--clr-hover);
+      color: var(--clr-light-red);
 
       > span {
 
         span,
         span::before,
         span::after {
-          background-color: var(--clr-hover);
+          background-color: var(--clr-light-red);
         }
 
         span {
