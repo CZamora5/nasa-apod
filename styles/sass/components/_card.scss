@@ -1,21 +1,16 @@
 .card {
   display: flex;
-  background-color: rgb(31, 31, 31);
-  color: rgb(230, 230, 230);
+  flex-direction: column;
+  color: var(--clr-light);
+  background-color: var(--clr-dark);
   // width: 90%;
   // max-width: 500px;
-  height: 400px;
+  // height: 400px;
 
   &__img {
-    // width: 400px;
-    height: 100%;
-    // background-position: center;
-    // background-repeat: no-repeat;
-    img {
-      object-fit: cover;
-      height: 100%;
-      // width: 100%;
-    }
+    object-fit: cover;
+    height: 300px;
+    // width: 100%;
   }
 
   &__content {

@@ -4,13 +4,14 @@ import { cropText } from './util.js';
 function printPictures(data) {
   const cardTemplate = document.getElementById('card-template').content;
   const gallery = document.getElementById('gallery');
+  const fragment = document.createDocumentFragment();
 
   data.forEach(picture => {
     const card = document.importNode(cardTemplate, true);
 
     // const cardImg = card.querySelector('.card__img');
     // cardImg.style.backgroundImage = `url(${picture.url})`;
-    const cardImg = card.querySelector('.card__img img');
+    const cardImg = card.querySelector('.card__img');
     cardImg.src = picture.url;
     cardImg.alt = `Nasa picture of the day ${picture.date}`;
 
@@ -24,12 +25,13 @@ function printPictures(data) {
     const cardDesc = card.querySelector('.card__desc');
     cardDesc.textContent = cropText(picture.explanation, 50);
 
-    gallery.appendChild(card);
+    fragment.appendChild(card);
   });
+  gallery.appendChild(fragment);
 }
 
 async function test() {
-  const data = await getPicturesByMonth('2022-09');
+  const data = await getPicturesByMonth('2022-07');
   printPictures(data);
 }
 
