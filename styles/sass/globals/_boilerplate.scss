@@ -9,8 +9,13 @@ html {
   box-sizing: inherit;
 }
 
+button {
+  font-family: var(--font), sans-serif;
+  font-size: 1rem;
+}
+
 body {
-  font-family: var(--font);
+  font-family: var(--font), sans-serif;
   margin: 0;
   padding: 0;
 }
