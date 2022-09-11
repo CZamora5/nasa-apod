@@ -527,6 +527,67 @@ a, a:visited, a:active {
   }
 }
 
+.spinner {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 2px solid var(--clr-medium-gray);
+  border-left-color: var(--clr-dark);
+  -webkit-animation: rotate 2500ms linear infinite;
+          animation: rotate 2500ms linear infinite;
+}
+.spinner-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 23.5rem) {
+  .spinner {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+@media (min-width: 36em) {
+  .spinner {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+@media (min-width: 48em) {
+  .spinner {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+@media (min-width: 62em) {
+  .spinner {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+}
+@media (min-width: 75em) {
+  .spinner {
+    width: 5rem;
+    height: 5rem;
+  }
+}
+@-webkit-keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media (min-width: 48em) {
   .grid {
     display: grid;
@@ -551,6 +612,8 @@ a, a:visited, a:active {
   background-color: transparent;
   border: none;
   padding: 0;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
 }
 .pagination__previous__date, .pagination__next__date {
   display: none;
@@ -576,7 +639,10 @@ a, a:visited, a:active {
 .pagination__previous > svg, .pagination__next > svg {
   fill: var(--clr-medium-gray);
 }
-.pagination__previous:hover > svg, .pagination__next:hover > svg {
+.pagination__previous:hover, .pagination__next:hover {
+  border: 1px solid var(--clr-light-red);
+}
+.pagination__previous:hover svg, .pagination__next:hover svg {
   -webkit-animation: scale 500ms alternate infinite;
           animation: scale 500ms alternate infinite;
   fill: var(--clr-light-red);
@@ -597,11 +663,19 @@ a, a:visited, a:active {
     transform: scale(1.1);
   }
 }
+.pagination__previous {
+  padding-right: 0.25rem;
+}
+@media (min-width: 23.5rem) {
+  .pagination__previous {
+    padding-right: 0.5rem;
+  }
+}
 .pagination__next {
-  margin-left: 0.5rem;
+  padding-left: 0.25rem;
 }
 @media (min-width: 23.5rem) {
   .pagination__next {
-    margin-left: 1rem;
+    padding-left: 0.5rem;
   }
 }/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,51 @@
+@use '../util' as util;
+
+.spinner {
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 2px solid var(--clr-medium-gray);
+  border-left-color: var(--clr-dark);
+  animation: rotate 2500ms linear infinite;
+
+  @include util.breakpoints(xsmall) {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  @include util.breakpoints(small) {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  @include util.breakpoints(medium) {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  @include util.breakpoints(large) {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  @include util.breakpoints(xlarge) {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

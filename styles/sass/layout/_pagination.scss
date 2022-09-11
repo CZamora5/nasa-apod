@@ -18,6 +18,8 @@
     background-color: transparent;
     border: none;
     padding: 0;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
 
     &__date {
       display: none;
@@ -41,9 +43,13 @@
       fill: var(--clr-medium-gray);
     }
 
-    &:hover > svg {
-      animation: scale 500ms alternate infinite;
-      fill: var(--clr-light-red);
+    &:hover {
+      border: 1px solid var(--clr-light-red);
+
+      svg {
+        animation: scale 500ms alternate infinite;
+        fill: var(--clr-light-red);
+      }
     }
 
     @keyframes scale {
@@ -57,11 +63,19 @@
     }
   }
 
-  &__next {
-    margin-left: 0.5rem;
+  &__previous {
+    padding-right: 0.25rem;
 
     @include util.breakpoints(xsmall) {
-      margin-left: 1rem;
+      padding-right: 0.5rem;
+    }
+  }
+
+  &__next {
+    padding-left: 0.25rem;
+
+    @include util.breakpoints(xsmall) {
+      padding-left: 0.5rem;
     }
   }
 }
