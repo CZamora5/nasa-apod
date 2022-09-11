@@ -1,3 +1,5 @@
+@use '../util' as util;
+
 .card {
   display: flex;
   flex-direction: column;
@@ -7,14 +9,25 @@
   &__img {
     object-fit: cover;
     height: 300px;
-    // width: 100%;
   }
 
   &__content {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    padding: 1rem;
+    padding: 0.5rem 0.25rem;
+
+    @include util.breakpoints(xsmall) {
+      padding: 0.5rem;
+    }
+  
+    @include util.breakpoints(small) {
+      padding: 0.75rem;
+    }
+
+    @include util.breakpoints(medium) {
+      padding: 1rem;
+    }
   }
 
   &__title {
@@ -22,11 +35,11 @@
   }
 
   &__date {
-    color: gray;
+    color: var(--clr-medium-gray);
   }
 
   &__desc {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
   }
 
   &__btn {
@@ -45,23 +58,20 @@
     &:hover {
       color: var(--clr-light-red);
 
-      > span {
+      .card__btn__line {
+        transform: scale(1.05) translateX(0.5rem);
+        background-color: var(--clr-light-red);
 
-        span,
-        span::before,
-        span::after {
+        &::before,
+        &::after {
           background-color: var(--clr-light-red);
         }
 
-        span {
-          transform: scale(1.05) translateX(0.5rem);
-        }
-
-        span::before {
+        &::before {
           transform: scale(1.05) rotate(35deg);
         }
 
-        span::After {
+        &::After {
           transform: scale(1.05) rotate(-35deg);
         }
       }
@@ -99,6 +109,26 @@
         &::after {
           transform: rotate(-30deg);
         }
+      }
+    }
+  }
+
+  &__copyright {
+    color: var(--clr-violet);
+    margin-top: auto;
+  }
+
+  @include util.breakpoints(medium) {
+    &.verbose {
+      flex-direction: row;
+
+      .card__img {
+        height: initial;
+        width: 60%;
+      }
+
+      .card__desc {
+        line-height: 1.6;
       }
     }
   }

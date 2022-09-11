@@ -20,8 +20,20 @@ body {
   padding: 0;
 }
 
-.none {
-  display: none;
+::-moz-selection {
+  background-color: var(--clr-dark-blue);
+}
+
+::selection {
+  background-color: var(--clr-dark-blue);
+}
+
+@media (min-width: 48em) {
+  .container {
+    width: 90%;
+    max-width: 90rem;
+    margin: 0 auto;
+  }
 }
 
 h1,
@@ -47,6 +59,9 @@ a, a:visited, a:active {
   --clr-light: rgb(230, 230, 230);
   --clr-violet: rgb(209, 156, 209);
   --clr-light-red: rgb(235, 118, 144);
+  --clr-dark-blue: rgb(24, 42, 75);
+  --clr-medium-gray: rgb(150, 150, 150);
+  --clr-gray: rgb(117, 117, 117);
 }
 
 .card {
@@ -64,16 +79,31 @@ a, a:visited, a:active {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding: 1rem;
+  padding: 0.5rem 0.25rem;
+}
+@media (min-width: 23.5rem) {
+  .card__content {
+    padding: 0.5rem;
+  }
+}
+@media (min-width: 36em) {
+  .card__content {
+    padding: 0.75rem;
+  }
+}
+@media (min-width: 48em) {
+  .card__content {
+    padding: 1rem;
+  }
 }
 .card__title {
   font-size: 2rem;
 }
 .card__date {
-  color: gray;
+  color: var(--clr-medium-gray);
 }
 .card__desc {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 .card__btn {
   background-color: transparent;
@@ -90,18 +120,17 @@ a, a:visited, a:active {
 .card__btn:hover {
   color: var(--clr-light-red);
 }
-.card__btn:hover > span span,
-.card__btn:hover > span span::before,
-.card__btn:hover > span span::after {
+.card__btn:hover .card__btn__line {
+  transform: scale(1.05) translateX(0.5rem);
   background-color: var(--clr-light-red);
 }
-.card__btn:hover > span span {
-  transform: scale(1.05) translateX(0.5rem);
+.card__btn:hover .card__btn__line::before, .card__btn:hover .card__btn__line::after {
+  background-color: var(--clr-light-red);
 }
-.card__btn:hover > span span::before {
+.card__btn:hover .card__btn__line::before {
   transform: scale(1.05) rotate(35deg);
 }
-.card__btn:hover > span span::After {
+.card__btn:hover .card__btn__line::After {
   transform: scale(1.05) rotate(-35deg);
 }
 .card__btn__icon {
@@ -133,6 +162,22 @@ a, a:visited, a:active {
 .card__btn__icon span::after {
   transform: rotate(-30deg);
 }
+.card__copyright {
+  color: var(--clr-violet);
+  margin-top: auto;
+}
+@media (min-width: 48em) {
+  .card.verbose {
+    flex-direction: row;
+  }
+  .card.verbose .card__img {
+    height: initial;
+    width: 60%;
+  }
+  .card.verbose .card__desc {
+    line-height: 1.6;
+  }
+}
 
 .header {
   position: -webkit-sticky;
@@ -142,9 +187,23 @@ a, a:visited, a:active {
   padding: 0.25rem;
   background-color: white;
 }
+@media (min-width: 23.5rem) {
+  .header {
+    padding: 0.25rem 0.5rem;
+  }
+}
+@media (min-width: 36em) {
+  .header {
+    padding: 0.25rem 0.75rem;
+  }
+}
+@media (min-width: 48em) {
+  .header {
+    padding: 0.25rem 0;
+  }
+}
 
 .navbar {
-  --medium-gray: rgb(150, 150, 150);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -156,8 +215,14 @@ a, a:visited, a:active {
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 0.125rem;
-  color: var(--medium-gray);
+  color: var(--clr-gray);
   display: none;
+}
+.navbar__title::-moz-selection {
+  color: var(--clr-light);
+}
+.navbar__title::selection {
+  color: var(--clr-light);
 }
 @media (min-width: 11.5rem) {
   .navbar__title {
@@ -180,7 +245,7 @@ a, a:visited, a:active {
   position: relative;
   width: 1.5rem;
   height: 0.25rem;
-  background-color: var(--medium-gray);
+  background-color: var(--clr-medium-gray);
   border-radius: 100vw;
   -webkit-animation: middle-bar-back 1s linear forwards;
           animation: middle-bar-back 1s linear forwards;
@@ -189,7 +254,7 @@ a, a:visited, a:active {
   content: "";
   position: absolute;
   height: 0.25rem;
-  background-color: var(--medium-gray);
+  background-color: var(--clr-medium-gray);
   border-radius: 100vw;
   right: 0;
 }

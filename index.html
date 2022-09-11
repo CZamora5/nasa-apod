@@ -16,7 +16,7 @@
 
 <body>
 
-  <header class="header">
+  <header class="header container">
     <nav class="navbar">
       <a href="https://www.nasa.gov/">
         <img class="navbar__logo" src="./images/nasa-logo.svg" alt="nasa logo">
@@ -30,12 +30,18 @@
   </header>
 
   <main class="container">
-    <div class="grid" id="gallery"></div>
   </main>
+
+  <section class="container">
+    <div class="page-buttons">
+      <div class="previous"></div>
+      <div class="next"></div>
+    </div>
+  </section>
+
   <template id="card-template">
     <div class="card">
       <img class="card__img">
-      <iframe class="card__img"></iframe>
       <div class="card__content">
         <h3 class="card__title"></h3>
         <time class="card__date"></time>
@@ -43,7 +49,7 @@
         <button class="card__btn">
           Learn more
           <span class="card__btn__icon">
-            <span></span>
+            <span class="card__btn__line"></span>
           </span>
         </button>
       </div>

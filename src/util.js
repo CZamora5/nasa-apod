@@ -52,7 +52,12 @@ export function formatDate(date) { // date is an instance of Date
 	return `${date.getUTCFullYear()}-${formatNumber(date.getUTCMonth() + 1)}-${formatNumber(date.getUTCDate())}`;
 }
 
-function getNextDay(date) { // date is an instance of Date
+export function getPreviousDay(date) { // date is an instance of Date
+  const milisecondsPerDay = 1000 * 60 * 60 * 24;
+  return new Date(date.getTime() - milisecondsPerDay);
+}
+
+export function getNextDay(date) { // date is an instance of Date
   const milisecondsPerDay = 1000 * 60 * 60 * 24;
   return new Date(date.getTime() + milisecondsPerDay);
 }
