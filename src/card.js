@@ -30,7 +30,7 @@ function setMediaElement(card, picture) {
   const cardElement = card.querySelector('.card');
   const img = card.querySelector('img');
 
-  if (picture['media_type'] == 'image') {
+  if (picture['media_type'] === 'image') {
     img.alt = `Nasa picture of the day ${picture.date}`;
     img.src = picture.url;
   } else {

@@ -1,7 +1,7 @@
 import { getPictureByDate, getPicturesByMonth } from './api.js';
 import { printPicture, printPictures } from './display.js';
 import { hideSpinner, showSpinner } from './spinner.js';
-import {} from './header.js';
+import { getFilterByOption } from './header.js';
 
 
 
@@ -20,20 +20,36 @@ document.addEventListener('click', evt => {
   const elem = evt.target;
 
   if (elem.matches('.card__btn')) {
-    searchImage(elem.dataset['date']);
+    const filterBy = getFilterByOption('#filter-by');
+    searchImage(elem.dataset['date'], filterBy);
   }
 });
 
-async function searchImage(date) {
+async function searchImage(date, filterBy) {
   showSpinner();
   const picture = await getPictureByDate(date);
   hideSpinner();
-  printPicture(picture);
+  if (filterBy !== 'any' && picture['media_type'] !== filterBy) {
+    showNotResults();
+  } else {
+    printPicture(picture);
+  }
 }
 
-async function searchImages(month) {
+async function searchImages(month, filterBy) {
   showSpinner();
   const pictures = await getPicturesByMonth(month);
   hideSpinner();
+  if (filterBy !== 'any') {
+    pictures = pictures.filter(pic => pic['media_type'] === filterBy);
+
+    if (pictures.length === 0) {
+      showNotResults();
+    }
+  }
   printPictures(pictures);
+}
+
+function showNotResults() {
+  console.log('not results');
 }
