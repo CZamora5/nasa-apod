@@ -21,7 +21,7 @@
       <a href="https://www.nasa.gov/">
         <img class="navbar__logo" src="./images/nasa-logo.svg" alt="nasa logo">
       </a>
-        
+
       <span class="navbar__title">Nasa</span>
       <button class="navbar__menu">
         <div class="navbar__menu__item"></div>
@@ -32,10 +32,20 @@
   <main class="container">
   </main>
 
-  <section class="container">
-    <div class="page-buttons">
-      <div class="previous"></div>
-      <div class="next"></div>
+  <section class="container pagination-wrapper">
+    <div class="pagination">
+      <button class="pagination__previous">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+          <path d="M15.293 3.293 6.586 12l8.707 8.707 1.414-1.414L9.414 12l7.293-7.293-1.414-1.414z" />
+        </svg>
+        <span class="pagination__previous__date">Jun 2022</span>
+      </button>
+      <button class="pagination__next">
+        <span class="pagination__next__date">Aug 2022</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+          <path d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z" />
+        </svg>
+      </button>
     </div>
   </section>
 

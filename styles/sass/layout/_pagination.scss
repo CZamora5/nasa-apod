@@ -1,0 +1,67 @@
+@use '../util' as util;
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-wrapper {
+    margin-top: 1rem;
+    padding: 1rem 0;
+  }
+
+  &__previous,
+  &__next {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+
+    &__date {
+      display: none;
+
+      @include util.breakpoints(xxsmall) {
+        display: initial;
+        font-size: 0.75rem;
+        color: var(--clr-dark);
+
+        &::selection {
+          color: var(--clr-light);
+        }
+      }
+
+      @include util.breakpoints(medium) {
+        font-size: 1rem;
+      }
+    }
+
+    > svg {
+      fill: var(--clr-medium-gray);
+    }
+
+    &:hover > svg {
+      animation: scale 500ms alternate infinite;
+      fill: var(--clr-light-red);
+    }
+
+    @keyframes scale {
+      0% {
+        transform: scale(1);
+      }
+
+      100% {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &__next {
+    margin-left: 0.5rem;
+
+    @include util.breakpoints(xsmall) {
+      margin-left: 1rem;
+    }
+  }
+}
