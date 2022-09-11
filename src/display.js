@@ -1,5 +1,4 @@
 import { generatePreviewCard } from './card.js';
-// import { hideSpinner, showSpinner } from './spinner.js';
 
 export function clearMainContent() {
   const main = document.querySelector('main');
