@@ -10,11 +10,11 @@
   @include util.breakpoints(xsmall) {
     padding: 0.25rem 0.5rem;
   }
-  
+
   @include util.breakpoints(small) {
     padding: 0.25rem 0.75rem;
   }
-  
+
   @include util.breakpoints(medium) {
     padding: 0.25rem 0;
   }
@@ -25,6 +25,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 
   &__logo {
     width: 3.5rem;
@@ -92,9 +93,12 @@
     }
 
     &.active {
+      +.navbar__options {
+        display: block;
 
-      + .navbar__options {
-        transform: translateX(0);
+        @include util.breakpoints(small) {
+          transform: translateX(0);
+        }
       }
 
       .navbar__menu__item {
@@ -109,7 +113,7 @@
         &::before {
           animation: top-bar 1s linear forwards;
         }
-        
+
         &::after {
           animation: bottom-bar 1s linear forwards;
         }
@@ -125,13 +129,13 @@
           top: -0.5rem;
           width: 2.25rem;
         }
-        
+
         50% {
           top: 0;
           width: 2.25rem;
           transform: rotate(0deg);
         }
-        
+
         100% {
           top: 0;
           width: 2.25rem;
@@ -139,7 +143,7 @@
           transform: rotate(45deg);
         }
       }
-      
+
       @keyframes middle-bar {
         0% {
           width: 1.5rem;
@@ -171,13 +175,13 @@
           bottom: -0.5rem;
           width: 2.25rem;
         }
-        
+
         50% {
           bottom: 0;
           width: 2.25rem;
           transform: rotate(0deg);
         }
-        
+
         100% {
           bottom: 0;
           width: 2.25rem;
@@ -198,13 +202,13 @@
         width: 2.25rem;
         background-color: var(--clr-medium-gray);
       }
-      
+
       25% {
         top: 0;
         width: 2.25rem;
         transform: rotate(0deg);
       }
-      
+
       0% {
         top: 0;
         width: 2.25rem;
@@ -212,7 +216,7 @@
         transform: rotate(45deg);
       }
     }
-    
+
     @keyframes middle-bar-back {
       100% {
         width: 1.5rem;
@@ -245,13 +249,13 @@
         width: 2.25rem;
         background-color: var(--clr-medium-gray);
       }
-      
+
       25% {
         bottom: 0;
         width: 2.25rem;
         transform: rotate(0deg);
       }
-      
+
       0% {
         bottom: 0;
         width: 2.25rem;
@@ -262,40 +266,52 @@
   }
 
   &__options {
-    position: absolute;
-    top: 100%;
-    // left: 0;
-    right: 0;
-    width: 100%;
-    max-width: 600px;
+    --max-width: 36rem;
+
+    display: none;
+    flex-basis: 100%;
     padding: 0.5rem 0.25rem;
     background-color: white;
-    transform: translateX(100vw);
-    transition: transform 1200ms ease-in-out;
+
+
+    @include util.breakpoints(small) {
+      display: block;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 100%;
+      max-width: var(--max-width);
+      transform: translateX(calc(50vw + var(--max-width)));
+      transition: transform 800ms ease-in-out;
+    }
 
     &__field {
       display: flex;
       flex-direction: column;
 
-      
+
       &__label {
         margin-bottom: 0.125rem;
+
         &::selection {
           color: var(--clr-light);
         }
       }
-      
-      input, select {
+
+      input,
+      select {
         margin-bottom: 0.5rem;
         padding-top: 0.125rem;
         padding-bottom: 0.25rem;
+
         &::selection {
           color: var(--clr-light);
         }
       }
     }
 
-    &__btn, &__btn--white {
+    &__btn,
+    &__btn--white {
       width: 100%;
       cursor: pointer;
       text-align: center;
@@ -312,7 +328,8 @@
         color: var(--clr-light);
       }
 
-      &:hover {
+      &:hover,
+      &:focus {
         background-color: var(--clr-almost-white);
       }
     }
@@ -323,7 +340,8 @@
       margin-bottom: 0.5rem;
       border: none;
 
-      &:hover {
+      &:hover,
+      &:focus {
         background-color: var(--clr-medium-dark);
       }
     }
@@ -331,11 +349,11 @@
     @include util.breakpoints(xsmall) {
       padding: 0.5rem;
     }
-    
+
     @include util.breakpoints(small) {
       padding: 0.5rem 0.75rem;
     }
-    
+
     @include util.breakpoints(medium) {
       padding-right: 0;
     }

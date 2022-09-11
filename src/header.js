@@ -79,10 +79,10 @@ export function displayErrorMessages() {
     const element = document.querySelector(selector);
 
     element.addEventListener('click', () => {
-      if (!(validate || validateSearchParams(getSearchParams()))) {
+      if (validate && !validateSearchParams(getSearchParams()).validParams) {
         return;
       }
-      
+
       if (hamburgerMenu.classList.contains('active')) {
         hamburgerMenu.classList.remove('active');
       }

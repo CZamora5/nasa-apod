@@ -19,6 +19,18 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  flex-grow: 1;
 }
 
 ::-moz-selection {
@@ -214,6 +226,7 @@ a, a:visited, a:active {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .navbar__logo {
   width: 3.5rem;
@@ -278,7 +291,12 @@ a, a:visited, a:active {
           animation: bottom-bar-back 1s linear forwards;
 }
 .navbar__menu.active + .navbar__options {
-  transform: translateX(0);
+  display: block;
+}
+@media (min-width: 36em) {
+  .navbar__menu.active + .navbar__options {
+    transform: translateX(0);
+  }
 }
 .navbar__menu.active .navbar__menu__item {
   background-color: var(--clr-light-red);
@@ -537,15 +555,23 @@ a, a:visited, a:active {
   }
 }
 .navbar__options {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  width: 100%;
-  max-width: 600px;
+  --max-width: 36rem;
+  display: none;
+  flex-basis: 100%;
   padding: 0.5rem 0.25rem;
   background-color: white;
-  transform: translateX(100vw);
-  transition: transform 1200ms ease-in-out;
+}
+@media (min-width: 36em) {
+  .navbar__options {
+    display: block;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    max-width: var(--max-width);
+    transform: translateX(calc(50vw + var(--max-width)));
+    transition: transform 800ms ease-in-out;
+  }
 }
 .navbar__options__field {
   display: flex;
@@ -560,7 +586,8 @@ a, a:visited, a:active {
 .navbar__options__field__label::selection {
   color: var(--clr-light);
 }
-.navbar__options__field input, .navbar__options__field select {
+.navbar__options__field input,
+.navbar__options__field select {
   margin-bottom: 0.5rem;
   padding-top: 0.125rem;
   padding-bottom: 0.25rem;
@@ -568,7 +595,8 @@ a, a:visited, a:active {
 .navbar__options__field input::-moz-selection, .navbar__options__field select::-moz-selection {
   color: var(--clr-light);
 }
-.navbar__options__field input::selection, .navbar__options__field select::selection {
+.navbar__options__field input::selection,
+.navbar__options__field select::selection {
   color: var(--clr-light);
 }
 .navbar__options__btn, .navbar__options__btn--white {
@@ -589,7 +617,7 @@ a, a:visited, a:active {
 .navbar__options__btn--white::selection {
   color: var(--clr-light);
 }
-.navbar__options__btn--white:hover {
+.navbar__options__btn--white:hover, .navbar__options__btn--white:focus {
   background-color: var(--clr-almost-white);
 }
 .navbar__options__btn {
@@ -598,7 +626,7 @@ a, a:visited, a:active {
   margin-bottom: 0.5rem;
   border: none;
 }
-.navbar__options__btn:hover {
+.navbar__options__btn:hover, .navbar__options__btn:focus {
   background-color: var(--clr-medium-dark);
 }
 @media (min-width: 23.5rem) {
