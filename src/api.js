@@ -1,4 +1,4 @@
-import { checkDateEquality, formatDate, getLastValidDayOfMonth } from './util.js';
+import { checkDateEquality, formatDate, getFirstValidDayOfMonth, getLastValidDayOfMonth } from './util.js';
 
 const API_KEY = 'd8lgw09oBngcPZN1fKLYUsUmRw4bYZXQAd5PIhsh';
 const BASE_URL = 'https://api.nasa.gov/planetary/apod';
@@ -11,7 +11,7 @@ export async function getPictureByDate(date) {
 export async function getPicturesByMonth(month) { // month = 'YYYY-MM' OR month can be an instance of Date
   // Returns the data for the dates of the specified month
   // If month is a Date object it only includes the data for dates greater than or equal to month
-  const startDate = typeof month == 'string' ? new Date(`${month}-01`) : month;
+  const startDate = getFirstValidDayOfMonth(month);
   const endDate = getLastValidDayOfMonth(month);
   let data;
 

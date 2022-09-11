@@ -1,4 +1,4 @@
-import { cropText } from './util.js';
+import { cropText, cleanText } from './util.js';
 
 export function generatePreviewCard(cardTemplate, picture, verbose = false) {
   const card = document.importNode(cardTemplate, true);
@@ -13,7 +13,9 @@ export function generatePreviewCard(cardTemplate, picture, verbose = false) {
   cardDate.setAttribute('datetime', picture.date);
 
   const cardDesc = card.querySelector('.card__desc');
-  cardDesc.textContent = verbose ? picture.explanation : cropText(picture.explanation, 50);
+  const text = verbose ? picture.explanation : cropText(picture.explanation, 50);
+  if (text!== cleanText(text, 'digg_url')) console.log(picture.explanation);
+  cardDesc.textContent =  cleanText(text, 'digg_url');
 
   if (verbose) {
     card.querySelector('.card').classList.add('verbose');
