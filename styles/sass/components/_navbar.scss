@@ -21,6 +21,7 @@
 }
 
 .navbar {
+  // position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -91,6 +92,10 @@
     }
 
     &.active {
+
+      + .navbar__options {
+        transform: translateX(0);
+      }
 
       .navbar__menu__item {
         background-color: var(--clr-light-red);
@@ -253,6 +258,86 @@
         transform-origin: center;
         transform: rotate(-45deg);
       }
+    }
+  }
+
+  &__options {
+    position: absolute;
+    top: 100%;
+    // left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 600px;
+    padding: 0.5rem 0.25rem;
+    background-color: white;
+    transform: translateX(100vw);
+    transition: transform 1200ms ease-in-out;
+
+    &__field {
+      display: flex;
+      flex-direction: column;
+
+      
+      &__label {
+        margin-bottom: 0.125rem;
+        &::selection {
+          color: var(--clr-light);
+        }
+      }
+      
+      input, select {
+        margin-bottom: 0.5rem;
+        padding-top: 0.125rem;
+        padding-bottom: 0.25rem;
+        &::selection {
+          color: var(--clr-light);
+        }
+      }
+    }
+
+    &__btn, &__btn--white {
+      width: 100%;
+      cursor: pointer;
+      text-align: center;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      transition: background-color 150ms;
+    }
+
+    &__btn--white {
+      background-color: white;
+      color: var(--clr-dark);
+
+      &::selection {
+        color: var(--clr-light);
+      }
+
+      &:hover {
+        background-color: var(--clr-almost-white);
+      }
+    }
+
+    &__btn {
+      background-color: var(--clr-dark);
+      color: var(--clr-light);
+      margin-bottom: 0.5rem;
+      border: none;
+
+      &:hover {
+        background-color: var(--clr-medium-dark);
+      }
+    }
+
+    @include util.breakpoints(xsmall) {
+      padding: 0.5rem;
+    }
+    
+    @include util.breakpoints(small) {
+      padding: 0.5rem 0.75rem;
+    }
+    
+    @include util.breakpoints(medium) {
+      padding-right: 0;
     }
   }
 }

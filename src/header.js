@@ -54,7 +54,7 @@ export function validateSearchParams(params) {
   } else {
     minDate = new Date('1995-06-16');
     const date = new Date(params.date);
-    
+
     if (date < minDate) {
       response.errors.invalidDate = 'The date can not be before Jun 16, 1995';
       response.validParams = false;
@@ -72,6 +72,23 @@ export function validateSearchParams(params) {
 export function displayErrorMessages() {
   return;
 }
+
+(function deactivateHamburgerMenuWhenSearching(hamburger, selectors) {
+  const hamburgerMenu = document.querySelector(hamburger);
+  selectors.forEach(({selector, validate}) => {
+    const element = document.querySelector(selector);
+
+    element.addEventListener('click', () => {
+      if (!(validate || validateSearchParams(getSearchParams()))) {
+        return;
+      }
+      
+      if (hamburgerMenu.classList.contains('active')) {
+        hamburgerMenu.classList.remove('active');
+      }
+    });
+  });
+})('.navbar__menu', [{ selector: '#search-btn', validate: true }, { selector: '#search-btn-random', validate: false }]);
 
 (function activateHamburgerMenu(selector) {
   const hamburgerMenu = document.querySelector(selector);

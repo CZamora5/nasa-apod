@@ -29,7 +29,7 @@
 
       <div class="navbar__options">
         <div class="navbar__options__field">
-          <label for="filter-by">Filter by:</label>
+          <label class="navbar__options__field__label" for="filter-by">Filter by:</label>
           <select id="filter-by" class="navbar__filter-by">
             <option value="any" selected>Images and videos</option>
             <option value="image">Only images</option>
@@ -37,7 +37,7 @@
           </select>
         </div>
         <div class="navbar__options__field">
-          <label for="search-by">Search by:</label>
+          <label class="navbar__options__field__label" for="search-by">Search by:</label>
           <select id="search-by" class="navbar__search-by">
             <option value="month" selected>Month</option>
             <option value="day">Date</option>
@@ -45,7 +45,7 @@
         </div>
         <div class="navbar__options__search-inputs-month">
           <div class="navbar__options__field">
-            <label for="month">Month:</label>
+            <label class="navbar__options__field__label" for="month">Month:</label>
             <select id="month" class="navbar__month">
               <option value="" disabled selected hidden>Choose a month</option>
               <option value="1">January</option>
@@ -63,13 +63,13 @@
             </select>
           </div>
           <div class="navbar__options__field">
-            <label for="year">Year:</label>
+            <label class="navbar__options__field__label" for="year">Year:</label>
             <input type="number" id="year" class="navbar__year" placeholder="2022">
           </div>
         </div>
         <div class="navbar__options__search-inputs-date none">
           <div class="navbar__options__field">
-            <label for="date">Date:</label>
+            <label class="navbar__options__field__label" for="date">Date:</label>
             <input type="date" id="date" class="navbar__date" min="1995-06-16" onfocus="this.max=new Date().toISOString().split('T')[0]">
           </div>
         </div>

@@ -11,7 +11,7 @@ html {
   box-sizing: inherit;
 }
 
-button {
+button, input, select {
   font-family: var(--font), sans-serif;
   font-size: 1rem;
 }
@@ -20,6 +20,7 @@ body {
   font-family: var(--font), sans-serif;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 ::selection {
