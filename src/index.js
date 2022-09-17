@@ -1,43 +1,45 @@
 import { getPictureByDate, getPicturesByMonth, getRandomPictures } from './api.js';
 import { printPicture, printPictures } from './display.js';
 import { hideSpinner, showSpinner } from './spinner.js';
-import { hidePagination, showPagination } from './pagination.js';
+import { hidePagination, setPage } from './pagination.js';
 import { getSearchParams, validateSearchParams } from './header.js';
 
-async function test() {
-  const data = await getPicturesByMonth('2022-07');
-  printPictures(data);
+(async function run() {
+  const defaultParams = {
+    filterBy: 'any', searchBy: 'month', month: new Date().getUTCMonth() + 1, year: new Date().getUTCFullYear()
+  };
 
-  // const picture = await getPictureByDate('2015-07-07');
-  // console.log(picture.explanation)
-  // printPicture(picture);
-}
-
-test();
-
+  let paramsDetails = validateSearchParams(defaultParams);
+  if (paramsDetails.validParams) {
+    if (defaultParams.searchBy === 'month') {
+      searchImages(paramsDetails.query, defaultParams);
+    } else {
+      searchImage(params.date, defaultParams);
+    }
+  }
+})();
 
 document.addEventListener('click', evt => {
   const elem = evt.target;
   const params = getSearchParams();
 
   if (elem.matches('.card__btn')) {
-    searchImage(elem.dataset['date'], params.filterBy);
+    searchImage(elem.dataset['date'], params);
   } else if (elem.matches('#search-btn')) {
     let paramsDetails = validateSearchParams(params);
-    console.log(paramsDetails)
     if (paramsDetails.validParams) {
       if (params.searchBy === 'month') {
-        searchImages(paramsDetails.query, params.filterBy);
+        searchImages(paramsDetails.query, params);
       } else {
-        searchImage(params.date, params.filterBy);
+        searchImage(params.date, params);
       }
     }
   } else if (elem.matches('#search-btn-random')) {
-    searchImage(null, params.filterBy, true);
+    searchImage(null, params, true);
   }
 });
 
-async function searchImage(date, filterBy, random = false) {
+export async function searchImage(date, params, random = false) {
   hidePagination();
   showSpinner();
 
@@ -47,32 +49,33 @@ async function searchImage(date, filterBy, random = false) {
   } else {
     picture = await getPictureByDate(date);
   }
-  console.log(picture);
   hideSpinner();
 
-  if (filterBy !== 'any' && picture['media_type'] !== filterBy) {
+  if (params.filterBy !== 'any' && picture['media_type'] !== params.filterBy) {
     showNotResults();
   } else {
     printPicture(picture);
-    showPagination();
+    if (!random) {
+      setPage(date, params, '.pagination__previous', '.pagination__next');
+    }
   }
 }
 
-async function searchImages(month, filterBy) {
+export async function searchImages(month, params) {
   hidePagination();
   showSpinner();
 
   let pictures = await getPicturesByMonth(month);
   hideSpinner();
-  if (filterBy !== 'any') {
-    pictures = pictures.filter(pic => pic['media_type'] === filterBy);
+  if (params.filterBy !== 'any') {
+    pictures = pictures.filter(pic => pic['media_type'] === params.filterBy);
   }
 
   if (pictures.length === 0) {
     showNotResults();
   } else {
     printPictures(pictures);
-    showPagination();
+    setPage(month, params, '.pagination__previous', '.pagination__next');
   }
 }
 
