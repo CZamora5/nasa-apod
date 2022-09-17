@@ -70,13 +70,14 @@ export function formatDate(date) { // date is an instance of Date
   return `${date.getUTCFullYear()}-${formatNumber(date.getUTCMonth() + 1)}-${formatNumber(date.getUTCDate())}`;
 }
 
-export function getPreviousDay(date) { // date is an instance of Date
+export function getPreviousDay(dateInput) { // dateInput is an instance of Date or a string
+  const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
   const milisecondsPerDay = 1000 * 60 * 60 * 24;
   return new Date(date.getTime() - milisecondsPerDay);
 }
 
 export function getPreviousMonth(month) { // month is a string with format yyyy-mm
-  const [yearNumber, monthNumber] = month.split('-').map(parseInt);
+  const [yearNumber, monthNumber] = month.split('-').map(str => parseInt(str));
 
   if (monthNumber === 1) {
     return `${formatNumber(yearNumber - 1, 4)}-12`;
@@ -85,13 +86,14 @@ export function getPreviousMonth(month) { // month is a string with format yyyy-
   }
 }
 
-export function getNextDay(date) { // date is an instance of Date
+export function getNextDay(dateInput) { // dateInput is an instance of Date or a string
+  const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
   const milisecondsPerDay = 1000 * 60 * 60 * 24;
   return new Date(date.getTime() + milisecondsPerDay);
 }
 
 export function getNextMonth(month) { // month is a string with format yyyy-mm
-  const [yearNumber, monthNumber] = month.split('-').map(parseInt);
+  const [yearNumber, monthNumber] = month.split('-').map(str => parseInt(str));
 
   if (monthNumber === 12) {
     return `${formatNumber(yearNumber + 1, 4)}-01`;
@@ -105,7 +107,7 @@ export function getDateInStringFormat(input) { // input is either yyyy-mm or yyy
     7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec'
   };
 
-  const parsedInput = input.split('-').map(parseInt);
+  const parsedInput = input.split('-').map(str => parseInt(str));
   if (parsedInput.length === 3) {
     return `${months[parsedInput[1]]} ${parsedInput[2]}, ${parsedInput[0]}`;
   }
